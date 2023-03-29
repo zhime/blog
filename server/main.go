@@ -2,20 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"net/http"
+	"github.com/zhime/blog/server/core"
+	"github.com/zhime/blog/server/global"
 )
 
 func main() {
-	fmt.Println("test")
-	router := gin.Default()
-	router.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"code": "0",
-			"msg":  "success",
-			"data": "",
-		})
-	})
-
-	_ = router.Run()
+	core.InitConfig()
+	fmt.Println(global.Config.Mysql)
 }
