@@ -3,10 +3,10 @@ package core
 import (
 	"fmt"
 	"github.com/spf13/viper"
-	"github.com/zhime/blog/server/global"
+	"github.com/zhime/blog/server/config"
 )
 
-func InitConfig() {
+func Viper() *config.Config {
 	viper.SetConfigType("yaml")
 	viper.SetConfigFile("./settings.yaml")
 	err := viper.ReadInConfig()
@@ -14,8 +14,10 @@ func InitConfig() {
 		fmt.Println(err.Error())
 	}
 
-	err = viper.Unmarshal(&global.Config)
+	var conf *config.Config
+	err = viper.Unmarshal(&conf)
 	if err != nil {
 		fmt.Println("Viper Unmarshal error")
 	}
+	return conf
 }

@@ -7,6 +7,9 @@ import (
 )
 
 func main() {
-	core.InitConfig()
+	global.Config = core.Viper() // 配置文件初始化
 	fmt.Println(global.Config.Mysql)
+
+	global.DB = core.Gorm() // gorm初始化
+	fmt.Println(global.DB)
 }
