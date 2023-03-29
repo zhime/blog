@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/zhime/blog/server/controller"
+	"github.com/gin-gonic/gin"
 	"github.com/zhime/blog/server/core"
 	"github.com/zhime/blog/server/global"
 	"github.com/zhime/blog/server/initialize"
-	"github.com/zhime/blog/server/model"
+	"net/http"
 )
 
 func main() {
@@ -24,14 +24,28 @@ func main() {
 		defer db.Close()
 	}
 
-	u := model.User{
-		UserName: "zhangsan",
-	}
+	router := gin.Default()
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"code": 0,
+			"data": map[string]string{
+				"name":  "golang",
+				"price": "29.8",
+			},
+			"msg": "success",
+		})
+	})
 
-	var userService *controller.UserService
-	user, err := userService.Register(u)
-	if err != nil {
-		global.Logger.Warn("register error")
-	}
-	fmt.Println(user)
+	_ = router.Run()
+
+	//u := model.User{
+	//	UserName: "zhangsan",
+	//}
+	//
+	//var userService *controller.UserService
+	//user, err := userService.Register(u)
+	//if err != nil {
+	//	global.Logger.Warn("register error")
+	//}
+	//fmt.Println(user)
 }
