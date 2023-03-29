@@ -17,7 +17,7 @@ func main() {
 	global.DB = core.Gorm() // gorm初始化
 	fmt.Println(global.DB)
 	if global.DB != nil {
-		initialize.RegisterTables(global.DB)
+		initialize.RegisterTables(global.DB) // 初始化表
 		db, _ := global.DB.DB()
 		defer db.Close()
 	}
