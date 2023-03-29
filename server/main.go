@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/zhime/blog/server/core"
 	"github.com/zhime/blog/server/global"
+	"github.com/zhime/blog/server/initialize"
 )
 
 func main() {
@@ -15,4 +16,9 @@ func main() {
 
 	global.DB = core.Gorm() // gorm初始化
 	fmt.Println(global.DB)
+	if global.DB != nil {
+		initialize.RegisterTables(global.DB)
+		db, _ := global.DB.DB()
+		defer db.Close()
+	}
 }

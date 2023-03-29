@@ -3,6 +3,7 @@ module github.com/zhime/blog/server
 go 1.19
 
 require (
+	github.com/satori/go.uuid v1.2.0
 	github.com/spf13/viper v1.15.0
 	go.uber.org/zap v1.21.0
 	gorm.io/driver/mysql v1.4.7

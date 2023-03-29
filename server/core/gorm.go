@@ -10,7 +10,7 @@ import (
 
 func Gorm() *gorm.DB {
 	if global.Config.Mysql.Host == "" {
-		//global.Log.Warnln("未配置mysql")
+		global.Logger.Warn("未配置mysql")
 		return nil
 	}
 	dsn := global.Config.Mysql.Dsn()
@@ -24,7 +24,7 @@ func Gorm() *gorm.DB {
 		Logger: mysqlLogger,
 	})
 	if err != nil {
-		//global.Log.Fatalf("[%s] mysql 连接失败", dsn)
+		global.Logger.Error("mysql 连接失败: " + dsn)
 		panic(err)
 	}
 	sqlDB, _ := db.DB()
