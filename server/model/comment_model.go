@@ -10,6 +10,6 @@ type CommentModel struct {
 	CommentCount       int             `json:"comment_count"`
 	ArticleModel       ArticleModel    `json:"article_model" gorm:"foreignKey:ArticleID"`
 	ArticleID          uint            `json:"article_id"`
-	UserModel          UserModel       `json:"user"`
+	UserModel          UserModel       `json:"user" gorm:"foreignKey:UserID"`
 	UserID             uint            `json:"user_id"`
 }
