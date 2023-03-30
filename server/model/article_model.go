@@ -11,7 +11,7 @@ type ArticleModel struct {
 	CommentCount int            `json:"comment_count" gorm:"comment:评论量"`
 	DiggCount    int            `json:"digg_count" gorm:"comment:点赞量"`
 	CollectCount int            `json:"collect_count" gorm:"comment:收藏量"`
-	TagModel     []TagModel     `json:"tag_models" gorm:"many2many:article_tag;comment:文章标签"`
+	TagModel     []TagModel     `json:"tag_models" gorm:"many2many:article_tag_models;comment:文章标签"`
 	CommentModel []CommentModel `json:"comment_models" gorm:"foreignKey:ArticleID;comment:评论列表"`
 	UserModel    UserModel      `json:"user_models" gorm:"foreignKey:UserID;comment:文章作者"`
 	UserID       uint           `json:"user_id" gorm:"comment:用户id"`
